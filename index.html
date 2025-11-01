@@ -717,7 +717,7 @@
                     <p class="translate" data-es="Hola! Mi nombre es Agustina María Martín y soy una desarrolladora de software con estudios en la <strong>Universidad Tecnológica Nacional de Mar del Plata</strong>. Próxima a finalizar mi Tecnicatura en Programación, me encuentro con gran motivación por seguir creciendo en el mundo de la tecnología." data-en="Hello! My name is Agustina María Martín and I'm a software developer studying at the <strong>National Technological University of Mar del Plata</strong>. About to complete my Technical Degree in Programming, I'm highly motivated to continue growing in the technology world.">
                         Hola! Mi nombre es Agustina María Martín y soy una desarrolladora de software con estudios en la <strong>Universidad Tecnológica Nacional de Mar del Plata</strong>. Próxima a finalizar mi Tecnicatura en Programación, me encuentro con gran motivación por seguir creciendo en el mundo de la tecnología.
                     </p>
-                    <p class="translate" data-es="Actualmente me desempeño como <strong>QA Tester Junior</strong>, donde realizo ejecución de casos de prueba, carga de bugs y pruebas de regresión para un proyecto llamado Best Doctors Insurance, un producto destinado a empresas de seguros medicos. Esta experiencia me permite observar los sistemas desde una perspectiva diferente a la del desarrollador, brindándome herramientas valiosas para los proyectos futuros." data-en="I currently work as a <strong>Junior QA Tester</strong>, where I execute test cases, log bugs, and perform regression testing for Best Doctors Insurance, a product for medical insurance company. This experience allows me to observe systems from a different perspective than that of a developer, giving me valuable tools for future projects.">
+                    <p class="translate" data-es="Actualmente me desempeño como <strong>QA Tester Junior en HS Consulting</strong>, donde realizo ejecución de casos de prueba, carga de bugs y pruebas de regresión para AdInsurance, un producto destinado a empresas de seguros. Esta experiencia me permite observar los sistemas desde una perspectiva diferente a la del desarrollador, brindándome herramientas valiosas para los proyectos futuros." data-en="I currently work as a <strong>Junior QA Tester at HS Consulting</strong>, where I execute test cases, log bugs, and perform regression testing for AdInsurance, a product for insurance companies. This experience allows me to observe systems from a different perspective than that of a developer, giving me valuable tools for future projects.">
                         Actualmente me desempeño como <strong>QA Tester Junior en HS Consulting</strong>, donde realizo ejecución de casos de prueba, carga de bugs y pruebas de regresión para AdInsurance, un producto destinado a empresas de seguros. Esta experiencia me permite observar los sistemas desde una perspectiva diferente a la del desarrollador, brindándome herramientas valiosas para los proyectos futuros.
                     </p>
                     <p class="translate" data-es="En el próximo año, comenzaré la <strong>Licenciatura en Ciencia de Datos en la Universidad CAECE de Buenos Aires</strong>, continuando así mi formación académica y profesional." data-en="Next year, I will begin my <strong>Bachelor's Degree in Data Science at CAECE University in Buenos Aires</strong>, continuing my academic and professional development.">
@@ -807,7 +807,7 @@
         </div>
     </section>
 
-     <section id="contact">
+    <section id="contact">
         <div class="section-container">
             <div class="section-header">
                 <span class="section-tag translate" data-es="Conectemos" data-en="Let's connect">Conectemos</span>
@@ -847,27 +847,27 @@
                 <div class="cv-downloads">
                     <h3 class="translate" data-es="Descarga mi CV" data-en="Download my Resume">Descarga mi CV</h3>
                     <div class="cv-buttons">
-                        <div class="cv-button" onclick="alert('Por favor, sube tu CV en español a tu repositorio de GitHub y reemplaza este alert con el link real.')">
+                        <a href="CV-Espanol.pdf" download class="cv-button">
                             <div class="cv-button-text">
                                 <div class="cv-button-title translate" data-es="📄 Curriculum en Español" data-en="📄 Resume in Spanish">📄 Curriculum en Español</div>
                                 <div class="cv-button-size">PDF</div>
                             </div>
                             <span>↓</span>
-                        </div>
-                        <div class="cv-button" onclick="alert('Por favor, sube tu CV en inglés a tu repositorio de GitHub y reemplaza este alert con el link real.')">
+                        </a>
+                        <a href="CV-English.pdf" download class="cv-button">
                             <div class="cv-button-text">
                                 <div class="cv-button-title translate" data-es="📄 Curriculum en Inglés" data-en="📄 Resume in English">📄 Curriculum en Inglés</div>
                                 <div class="cv-button-size">PDF</div>
                             </div>
                             <span>↓</span>
-                        </div>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-     <footer>
+    <footer>
         <div class="footer-content">
             <div class="footer-top">
                 <div class="footer-name">Agustina María Martín</div>
@@ -893,5 +893,57 @@
                 <p class="footer-text translate" data-es="© 2024 Agustina María Martín. Todos los derechos reservados." data-en="© 2024 Agustina María Martín. All rights reserved.">© 2024 Agustina María Martín. Todos los derechos reservados.</p>
             </div>
         </div>
-</footer>
+    </footer>
+
+    <script>
+        let currentLang = 'es';
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'es' ? 'en' : 'es';
+            document.getElementById('langBtn').textContent = currentLang === 'es' ? 'EN' : 'ES';
+            
+            const elements = document.querySelectorAll('.translate');
+            elements.forEach(element => {
+                const text = element.getAttribute(`data-${currentLang}`);
+                if (text) {
+                    element.innerHTML = text;
+                }
+            });
+            
+            document.documentElement.lang = currentLang;
+        }
+
+        function toggleMenu() {
+            const menu = document.getElementById('navMenu');
+            menu.classList.toggle('active');
+        }
+
+        function closeMenu() {
+            const menu = document.getElementById('navMenu');
+            menu.classList.remove('active');
+        }
+
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
+</html>
